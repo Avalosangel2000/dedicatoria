@@ -1,0 +1,288 @@
+/* ==================== PERSONALIZACIÓN DE MENSAJES ==================== */
+
+/* --- Animación de aparición suave SOLO para scroll-msg --- */
+.scroll-msg {
+    animation: fadeInUp 2s ease both, bounce 5s infinite;
+    /* Ajuste de fadeInUp (1.2s) para que sea más lenta o rápida */
+}
+
+/* --- Animación de aparición suave --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Animación de rebote --- */
+@keyframes bounce{
+    0%,100%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-20px);
+    }
+}
+
+/* Separación entre mensajes individuales en cada columna (ajusta 'gap' para cambiar la distancia vertical) */
+.mensajes-IZQUIERDA, .mensajes-centro, .mensajes-DERECHA {
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* <--- separación entre mensajes */
+    flex: 1;
+    min-width: 0;
+}
+
+/* Contenedor de mensajes en tres columnas */
+.mensajes-contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* <-- Centra las columnas */
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    gap: 32px;
+}
+
+/* Separación entre mensajes individuales en cada columna (ajusta 'gap' para cambiar la distancia) */
+.mensajes-IZQUIERDA, .mensajes-centro, .mensajes-DERECHA {
+    display: flex;
+    flex-direction: column;
+    gap: 180px; /* <--- Aquí puedes cambiar la separación entre mensajes */
+    flex: 1;
+    min-width: 0;
+    width: 350px;
+    overflow: visible;
+    align-items: center; /* <-- Centra los mensajes en cada columna */
+    text-align: center;  /* <-- Centra el texto de los mensajes */
+}
+.mensajes-IZQUIERDA {
+    align-items: flex-start;
+    text-align: left;
+}
+.mensajes-centro {
+    align-items: center;
+    text-align: center;
+}
+.mensajes-DERECHA {
+    align-items: flex-end;
+    text-align: right;
+}
+/* Reproductor de audio en la esquina superior derecha */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.audio-player {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	z-index: 1000;
+	width: 180px;
+	height: 40px;
+}
+
+.audio-player audio {
+	width: 100%;
+	height: 32px;
+
+}
+body {
+	margin: 0;
+	font-family: 'Merriweather', serif;
+    color: black;
+    text-align: center;
+}
+
+/* Mensaje principal con Playfair Display */
+.mensaje-principal .principal {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.8em;
+	font-weight: 700;
+	text-align: center;
+	margin: 40px 0;
+
+}
+
+/* Mensajes secundarios con Merriweather */
+
+/* --- Burbuja tipo mensaje de texto iPhone --- */
+.mensaje {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1em;
+    margin: 16px 0;
+    background: #f1f0f0; /* Color burbuja iPhone (gris claro) */
+    border-radius: 22px 22px 22px 6px; /* Bordes redondeados tipo chat */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.90); /* Sombra suave */
+    padding: 12px 22px;
+    border: none;
+    display: inline-block;
+    max-width: 70%;
+    position: relative;
+    /* Puedes modificar estos valores para personalizar el estilo */
+}
+
+/* --- Triángulo tipo "cola" de burbuja --- */
+.mensaje::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    bottom: -10px;
+    width: 20px;
+    height: 20px;
+    background: #f1f0f0;
+    border-bottom-left-radius: 16px;
+    transform: rotate(45deg);
+    z-index: 0;
+}
+
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    padding: 20px 0;
+}
+
+.inicio{ /*estilo de la seccion de inicio*/
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+.scroll-msg{
+    animation:bounce 5s infinite; /*Animación*/
+    text-shadow: 2px 2px 9px rgba(0,0,0,0.50);
+} 
+/*regla/rule at para definir el comportamiendo de la animacion de un elementom, como el de rebote*/
+/* Mensajes alineados */
+.izquierda {
+    justify-content: left;
+    text-align: left;
+    padding-left: 50px;
+}   
+
+.mensajes-IZQUIERDA, .mensajes-DERECHA, .mensajes-centro {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /*original 18px */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 40px auto;
+}
+
+.mensajes-IZQUIERDA {
+    align-items: flex-start;
+    text-align: left;
+    margin-left: 0;
+}
+.mensajes-DERECHA {
+    align-items: flex-end;
+    text-align: right;
+    margin-right: 0;
+}
+.mensajes-centro {
+    align-items: center;
+    text-align: center;
+}
+
+/* ==================== DISPERSIÓN HORIZONTAL DE MENSAJES ==================== */
+
+/* Contenedor de columnas: espacio horizontal extra y overflow visible */
+.mensajes-IZQUIERDA, .mensajes-centro, .mensajes-DERECHA {
+    display: flex;
+    flex-direction: column;
+    gap: 100px; /* Separación vertical grande */ /* ESte si funciona xd*/
+    width: 300px; /* Aumenta el ancho para evitar superposición */
+    overflow: visible; /* Permite que los mensajes se desplacen fuera del contenedor */
+}
+
+/* Ejemplo de dispersión horizontal usando nth-child */
+.mensaje:nth-child(1) { transform: translateX(-80px); }
+.mensaje:nth-child(2) { transform: translateX(60px); }
+.mensaje:nth-child(3) { transform: translateX(-120px); }
+.mensaje:nth-child(4) { transform: translateX(100px); }
+.mensaje:nth-child(5) { transform: translateX(-40px); }
+.mensaje:nth-child(6) { transform: translateX(80px); }
+.mensaje:nth-child(7) { transform: translateX(-60px); }
+.mensaje:nth-child(8) { transform: translateX(120px); }
+.mensaje:nth-child(9) { transform: translateX(-100px); }
+.mensaje:nth-child(10) { transform: translateX(40px); }
+
+/* Puedes seguir agregando más reglas para más mensajes si lo necesitas */
+/* Ajusta los valores para experimentar con la dispersión horizontal */
+
+
+/* ==================== MENSAJE PRINCIPAL EN BURBUJA DESTACADA ==================== */
+/*
+    El mensaje principal aparece dentro de una burbuja grande, sin punta,
+    con esquinas redondeadas y color de fondo diferente para destacar.
+    Puedes ajustar el color, el padding y el ancho según lo que necesites.
+*/
+
+.mensaje-principal {
+    background: rgba(255, 248, 220, 0.9); /* Color de fondo destacado */
+    border-radius: 28px;  /* Esquinas redondeadas */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4); /* Sombra suave */
+    padding: 32px 40px;
+    max-width: 900px; /* <--- Más ancho */
+    margin: 60px auto 40px auto;
+    border: none;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    color: #333333; /* Color de texto */
+    position: relative;
+    /* Sin punta, solo burbuja grande */
+}
+
+/* ==================== CONFIGURACIÓN DE FONDO ==================== */
+/*
+    Aquí puedes personalizar el fondo de la página.
+    Cambia el color, agrega una imagen, ajusta el tamaño y el comportamiento.
+    Ejemplos:
+    - Solo color: background: #f7faff;
+    - Imagen fija: background-image: url('multimedia/fondo.jpg');
+    - Imagen que cubre todo: background-size: cover;
+    - Imagen que se repite verticalmente: background-repeat: repeat-y;
+    - Imagen que se mueve con el scroll: background-attachment: scroll;
+    - Imagen fija mientras haces scroll: background-attachment: fixed;
+*/
+
+body {
+    
+    background-image: url('multimedia/fondo.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+}
+.scroll-msg{
+    color: #FFFFFF;
+}
+span{
+    font-size: 1.8rem;
+    
+}
+
+/* ==================== PARA AUTOR/FIRMA ==================== */
+/*
+    Aplica estilo especial al <p> dentro del mensaje principal para que parezca una firma o posdata.
+    Puedes ajustar el tamaño, color, fuente y espaciado según prefieras.
+*/
+.mensaje-principal p {
+    font-size: 1rem;           /* Más grande que el texto normal */
+    font-family: 'Playfair Display', serif; /* Fuente elegante */
+    color: #333333;             /* Color destacado */
+    font-style: italic;         /* Estilo cursiva tipo firma */
+    margin-top: 24px;           /* Espacio arriba de la firma */
+    letter-spacing: 2px;        /* Espaciado entre letras */
+    text-align: right;          /* Alinea la firma a la derecha */
+    opacity: 0.85;              /* Un poco más suave */
+}
